@@ -1,4 +1,4 @@
-# Open-WOB
+# ODS Open-WOB
 
 Openbare Consultatie open data standaard (ODS) voor Publicatie Wob-verzoeken (Open Wob) 
 
