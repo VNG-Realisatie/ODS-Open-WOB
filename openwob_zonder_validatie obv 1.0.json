@@ -1,0 +1,307 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "WOBverzoeken",
+	"type": "object",
+	"required": ["WOBverzoeken"],
+	"properties": {
+		"WOBverzoeken": {
+			"$id": "#root/WOBverzoeken",
+			"title": "Wobverzoeken",
+			"type": "array",
+			"items":{
+				"$id": "#root/WOBverzoeken/items",
+				"title": "Items",
+				"type": "object",
+				"required": [
+					"Wobverzoek_informatie",
+					"ID",
+					"Behandelend_bestuursorgaan",
+					"Ontvanger_informatieverzoek",
+					"Themas",
+					"Titel",
+					"Ontvangstdatum",
+					"Besluitdatum",
+					"Besluit",
+					"URL_informatieverzoek",
+					"URL_besluit"
+				],
+				"properties": {
+					"Wobverzoek_informatie": {
+						"$id": "#root/WOBverzoeken/items/Wobverzoek_informatie",
+						"description": "Versie informatie van het WOBverzoek",
+						"type": "object",
+						"required": ["Status", "Tijdstip_laatste_wijziging"],
+						"properties": {
+							"Status": {
+								"$id": "#root/WOBverzoeken/items/Wobverzoek_informatie/Status",
+								"description": "De status van het WOB verzoek",
+								"type": "string",
+								"enum": [
+									"Nieuw",
+									"Gewijzigd",
+									"Verwijderd"
+								],
+								"example": "Nieuw"
+							},
+							"Tijdstip_laatste_wijziging": {
+								"$id": "#root/WOBverzoeken/items/Wobverzoek_informatie/Tijdstip_laatste_wijziging",
+								"description": "De status van het WOB verzoek (UTC datetime)",
+								"type": "string",
+								"example": "2020-07-01T22:01:01"
+							}
+						}
+					},
+					"ID": {
+						"$id": "#root/WOBverzoeken/items/ID",
+						"description": "Het ID van het WOB verzoek",
+						"type": "string",
+						"examples": ["nl.pv74 2019-0071", "nl.gm0583 2020-0012"]
+					},
+					"Behandelend_bestuursorgaan": {
+						"$id": "#root/WOBverzoeken/items/Behandelend_bestuursorgaan",
+						"description": "Identificatie behandelend bestuursorgaan",
+						"type": "string",
+						"example": "nl.gm0599"
+					},
+					"Ontvanger_informatieverzoek": {
+						"$id": "#root/WOBverzoeken/items/Ontvanger_informatieverzoek",
+						"description": "Eerste ontvanger informatieverzoek",
+						"type": "string",
+						"example": "nl.gm0599"
+					},
+					"Volgnummer": {
+						"$id": "#root/WOBverzoeken/items/Volgnummer",
+						"description": "Intern volgnummer",
+						"type": "string",
+						"example": "WOB1234"
+					},
+					"Titel": {
+						"$id": "#root/WOBverzoeken/items/Titel",
+						"description": "Titel van het WOB verzoek",
+						"type": "string",
+						"example": "Verlenen van een kapvergunning Van de Spiegelstraat 12 Den Haag februari 2009"
+					},
+					"Beschrijving": {
+						"$id": "#root/WOBverzoeken/items/Beschrijving",
+						"description": "Korte beschrijvng van het WOB verzoek",
+						"type": "string",
+						"example": "Korte samenvatting van het informatieverzoek en eventuele onderliggende vragen of onderwerpen"
+					},
+					"Verzoeker": {
+						"$id": "#root/WOBverzoeken/items/Verzoeker",
+						"description": "Indiener van het WOB verzoek",
+						"type": "string",
+						"enum": [
+							"Rechtspersoon",
+							"Rechtsvertegenwoordiger (gemachtigde)",
+							"Natuurlijk persoon"
+						],
+						"example": "Rechtspersoon"
+					},
+					"Ontvangstdatum": {
+						"$id": "#root/WOBverzoeken/items/Ontvangstdatum",
+						"description": "Datum ontvangst WOB verzoek (yyyy-mm-dd)",
+						"type": "string",
+						"example": "2020-01-01"
+					},
+					"Besluitdatum": {
+						"$id": "#root/WOBverzoeken/items/Besluitdatum",
+						"description": "Datum besluit WOB verzoek (yyyy-mm-dd)",
+						"type": "string",
+						"example": "2020-01-01"
+					},
+					"Behandelstatus": {
+						"$id": "#root/WOBverzoeken/items/Behandelstatus",
+						"description": "De laatste afgehandelde status",
+						"type": "string",
+						"default": "Afgehandeld"
+					},
+					"Besluit": {
+ 						"$id": "#root/WOBverzoeken/items/Besluit",
+					   "description": "Besluit",
+						"type": "string",
+						"enum": [
+							"Openbaar gemaakt",
+							"Niet openbaar gemaakt",
+							"Deels openbaar gemaakt",
+							"Reeds openbaar"
+						],
+						"example": "Openbaar gemaakt"
+					},
+					"Termijnoverschrijding": {
+ 						"$id": "#root/WOBverzoeken/items/Termijnoverschrijding",
+						"description": "Verschoonbare termijjnoverschrijding ?",
+						"type": "string",
+						"enum": [
+							"Ja",
+							"Nee"
+						],
+						"example": "Nee"
+					},
+					"URL_informatieverzoek": {
+ 						"$id": "#root/WOBverzoeken/items/URL_informatieverzoek",
+						"description": "URL naar het informatieverzoek",
+						"type": "string",
+						"example": "http://www.example.com/index.html"
+					},
+					"URL_inventarisatielijst": {
+ 						"$id": "#root/WOBverzoeken/items/URL_inventarisatielijst",
+						"description": "URL naar de inventarisatielijst",
+						"type": "string",
+						"example": "http://www.example.com/index.html"
+					},
+					"URL_besluit": {
+  						"$id": "#root/WOBverzoeken/items/URL_besluit",
+						"description": "URL naar het besluit of reactiebrief",
+						"type": "string",
+						"example": "http://www.example.com/index.html"
+					},
+					"Bijlagen": {
+ 						"$id": "#root/WOBverzoeken/items/Bijlagen",
+						"description": "URL's naar bijlagen",
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": ["Type_Bijlage", "Status_Bijlage", "Tijdstip_laatste_wijziging_bijlage", "Titel_Bijlage","URL_Bijlage"],
+							"properties": {
+								"Type_Bijlage":{
+									"$id": "#root/WOBverzoeken/items/Bijlagen/Type_bijlage",
+									"description": "Het type van de bijlage",
+									"type": "string",
+									"enum": [
+										"Procedureel",
+										"Inhoudelijk"
+									],
+									"example": "Inhoudelijk"
+								},
+								"Status_Bijlage": {
+									"$id": "#root/WOBverzoeken/items/Bijlagen/Status_bijlage",
+									"description": "De status van het WOB verzoek",
+									"type": "string",
+									"enum": [
+										"Nieuw",
+										"Gewijzigd",
+										"Verwijderd"
+									],
+									"example": "Nieuw"								
+								},
+								"Tijdstip_laatste_wijziging_bijlage": {
+									"$id": "#root/WOBverzoeken/items/Bijlagen/Tijdstip_laatste_wijziging_bijlage",
+									"description": "De tijstip van de laatste wijziging van de Bijlage (UTC datetime)",
+									"type": "string",
+									"example": "2020-07-01T22:01:01"
+								},
+								"Titel_Bijlage": {
+									"$id": "#root/WOBverzoeken/items/Bijlagen/Titel_URL_bijlage",
+									"description": "vriendelijke naam / link  naar de bijlage met uitleg waarheen het verwijst",
+									"type": "string",
+									"example": "Link naaar Bijlage 1"
+								},
+								"URL_Bijlage": {
+									"description": "URL naar de bijlage",
+									"$id": "#root/WOBverzoeken/items/Bijlagen/Bijlage",
+									"type": "string",
+									"example": "http://www.example.com/index.html"
+								}
+							}
+						}
+					},
+					"Geografisch_gebied": {
+ 						"$id": "#root/WOBverzoeken/items/Geografisch_gebied",
+						"description": "Ruimtelijke afbakening voor het object / perceel / gebied waar het informatieverzoek betrekking op heeft.",
+						"type": "string",
+						"example": "Het stationsgebied"
+					},
+					"BAG_ID": {
+ 						"$id": "#root/WOBverzoeken/items/BAG_ID",
+						"description": "Object ID uit Basisregistratie Adressen en Gebouwen",
+						"type": "string",
+						"example": "0518100000231232"
+					},
+					"BGT_ID": {
+  						"$id": "#root/WOBverzoeken/items/BGT_ID",
+					   "description": "Object ID uit Basisregistratie Grootschalige Topografie",
+						"type": "string",
+						"example": "NL.IMGeo G1023.b2ad189a-8c46-49f2-a192-557ba07c49a2"
+					},
+					"COORDS": {
+  						"$id": "#root/WOBverzoeken/items/COORDS",
+						"description": "Rijksdriehoekscoördinaten ",
+						"type": "object",
+						"required": ["X", "Y"],
+						"properties": {
+							"X": {
+								"$id": "#root/WOBverzoeken/items/COORDS/X",
+								"description": "X coördinaat",
+								"type": "integer",
+								"example": 200000
+							},
+							"Y": {
+								"$id": "#root/WOBverzoeken/items/COORDS/Y",
+								"description": "Y coördinaat",
+								"type": "integer",
+								"example": 454000
+							}
+						}  
+					},
+					"Geografische_positie": {
+  						"$id": "#root/WOBverzoeken/items/Geografische_positie",
+						"description": "Geografische positieaanduiding",
+						"type": "object",
+						"required": ["Longitude", "Lattitude"],
+						"properties": {
+							"Longitude": {
+							"$id": "#root/WOBverzoeken/items/Geografische_positie/Longitude",
+								"description": "Lengtegraad (DD.dddddd notatie)",
+								"type": "number",
+								"example": 4.3166395
+							},
+							"Lattitude": {
+								"$id": "#root/WOBverzoeken/items/Geografische_positie/Lattitude",
+								"description": "Breedtegraad (DD.dddddd notatie)",
+								"type": "number",
+								"example": 52.0775912
+							}
+						}
+					},
+					"Postcodegebied": {
+						"$id": "#root/WOBverzoeken/items/Postcodegebied",
+						"description": "Postcodegebieden volgens CBS, postcode-6 (3011AD) of postcode-4 (3011)",
+						"type": "string",
+						"example": "3011AD"
+					},
+					"Themas":{
+						"$id": "#root/WOBverzoeken/items/Themas",
+						"description": "Een of meerdere thema's uit de TOP-lijst",
+						"type": "array",
+						"items":{
+							"uniqueItems": true,
+							"type": "object",
+							"required": ["Hoofdthema"],
+							"properties": {
+								"Hoofdthema": {
+									"$id": "#root/WOBverzoeken/items/Themas/Hoofdthema",
+									"description": "Thema uit TOP-lijst",
+									"type": "string",
+									"example": "Cultuur en recreatie"
+								},
+								"Subthema": {
+									"$id": "#root/WOBverzoeken/items/Themas/Subthema",
+									"desciption": "subthema",
+									"type": "string",
+									"example": "Recreatie"
+								},
+								"Aanvullend_thema": {
+									"$id": "#root/WOBverzoeken/items/Themas/Aanvullend_thema",
+									"desciption": "subthema",
+									"type": "string",
+									"example": "Sport"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
