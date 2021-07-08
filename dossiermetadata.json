@@ -1,0 +1,370 @@
+[
+  {
+    "Attributen": "ID",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "",
+    "Format": "nl.(notatie behorend bij type organisatie)(getal behorend bij specifieke organisatie) jaartal - dossiernummer",
+    "Voorbeeld": "nl.gm0599 2019-125",
+    "Uitgangspunten": "1. IVZ (informatieverzoek) gekozen omdat wob verzoek vervalt onder WOO\n2. https://en.wikipedia.org/wiki/Akoma_Ntoso wordt door KOOP gehanteerd.\n3. wanneer beschikbaar locatie opnemen GRS"
+  },
+  {
+    "Attributen": "Behandelend bestuursorgaan",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Vul hier de GRS notatie in van het behandelend bestuursorgaan",
+    "Format": "nl.(notatie behorend bij type organisatie)(getal behorend bij specifieke organisatie)",
+    "Voorbeeld": "nl.gm0599",
+    "Uitgangspunten": "wanneer GRS beschikbaar is de URI opnemen"
+  },
+  {
+    "Attributen": "Eerste ontvanger informatieverzoek",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Vul hier de GRS notatie in van het eerste bestuursorgaan. Dit wijkt af indien het eerste informatieverzoek is ontvangen door een andere type- of specifieke organisatie",
+    "Format": "nl.(notatie behorend bij type organisatie)(getal behorend bij specifieke organisatie)",
+    "Voorbeeld": "nl.gm0599",
+    "Uitgangspunten": "wanneer GRS beschikbaar is de URI opnemen"
+  },
+  {
+    "Attributen": "Intern volgnummer",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Dit veld is gewenst voor interne vindbaarheid en is vrij invulbaar",
+    "Format": "vrij formaat, alfanumeriek",
+    "Voorbeeld": "WOB1234",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Thema",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Hievoor wordt de topthemalijst gehanteerd vanuit PLOOI. Hoofdthema, 16 stuks. Verwijzing gebeurt middels URI uit GRS. Thema's zijn: \ncultuur en recreatie\neconomie\ninternationaal\nmigratie en integratie\nnatuur en milieu\nonderwijs en wetenschap\nopenbare orde en veiligheid\norganisatie en bedrijfsvoering\noverheidsfinanci�n\nrecht\nruimte en infrastructuur\nsociale zekerheid\nverkeer\nwerk\nwonen\nzorg en gezondheid",
+    "Format": "NTB, URI nog niet bekend",
+    "Voorbeeld": "NTB, URI nog niet bekend",
+    "Uitgangspunten": "wanneer GRS beschikbaar is de URI opnemen"
+  },
+  {
+    "Attributen": "Subthema",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Hievoor wordt de topthemalijst gehanteerd vanuit PLOOI. Subthema, 97 stuks. Verwijzing gebeurt middels URI uit GRS",
+    "Format": "tt(vier cijfers)",
+    "Voorbeeld": "tt004",
+    "Uitgangspunten": "wanneer GRS beschikbaar is de URI opnemen"
+  },
+  {
+    "Attributen": "Aanvullend thema",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "bijvoorbeeld interne thema's, graag afzondelijke velden, trefwoorden",
+    "Format": "vrij formaat, alfanumeriek",
+    "Voorbeeld": "Tapvergunning",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Titel",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "conform TMLO, beknopte formeel-inhoudelijk beschrijving (titel) van het record\n\nHet gaat het hier om de naam waaronder het record formeel bekend is. Wordt ook wel �titel� of �title� genoemd.\n\nVerwerk in de naam van het record bijvoorbeeld de processtap die tot het record heeft geleid, bij voorkeur op basis van een naamgevingsconventie. Het wordt aanbevolen om voor de organisatie naamgevingsconventies te\nontwikkelen en toe te passen.",
+    "Format": "tekst",
+    "Voorbeeld": "�Verlenen van een kapvergunning Van de Spiegelstraat 12 Den Haag februari 2009� (dossier).\n�Kapvergunning � A. van der Elst - Van de Spiegelstraat 12, Den Haag � 23 februari 2009� (archiefstuk).\n�Brief inzake �..� (archiefstuk)\n\"Vergaderdossier voor de ingelaste vergadering van Wijkteam Zuid met huurderscommissies in de wijken\nHoograven en Lunetten op 5 juli 2013\" (dossier).\n\"Tweede bedenking van de Welstandscommissie, vanwege de representativiteit van de gevel\" (archiefstuk).",
+    "Uitgangspunten": "Overgenomen uit TMLO"
+  },
+  {
+    "Attributen": "Omschrijving",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Korte samenvatting van het verzoek / de verzoeken",
+    "Format": "",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Indiener",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "rechtspersoon / rechtsvertegenwoordiger (gemachtigde) / natuurlijk persoon",
+    "Format": "tekst",
+    "Voorbeeld": "rechtspersoon",
+    "Uitgangspunten": "1. er wordt uitgegaan van een indiener en niet van een aanvrager omdat er sprake is van een indieningsdatum.\n2. Gekozen is om \"pers\" niet mee te nemen als optie omdat het een verdere differentiatie \"van\" is."
+  },
+  {
+    "Attributen": "Ontvangstdatum",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Datum",
+    "Format": "YYYY-MM-DD",
+    "Voorbeeld": "2019/12/05",
+    "Uitgangspunten": "1. Gekozen is om uit te gaan van de ontvangstdatum ipv indieningsdatum omdat vanaf de ontvangstdatum de behandeltermijn gaat lopen.\n2.  Voor datumaanduiding wordt niet meer uitgegaan van de NORA inclusief tijdstip maar simpelweg een datumaanduiding"
+  },
+  {
+    "Attributen": "Besluitdatum",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Datum",
+    "Format": "YYYY-MM-DD",
+    "Voorbeeld": "2019/12/05",
+    "Uitgangspunten": "1. Voor datumaanduiding wordt niet meer uitgegaan van de NORA inclusief tijdstip maar simpelweg een datumaanduiding"
+  },
+  {
+    "Attributen": "Status",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "defaultwaarde: afgehandeld",
+    "Format": "",
+    "Voorbeeld": "",
+    "Uitgangspunten": "1. Besloten is om de laatste afgehandelde status aan te houden. Het tussentijdse  proces waarbij WOB verzoeken bv. een verlengingstermijn hebben gehad wordt niet meegeomen."
+  },
+  {
+    "Attributen": "Besluit",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "openbaar gemaakt / niet openbaar gemaakt / deels openbaar gemaakt",
+    "Format": "tekst",
+    "Voorbeeld": "openbaar gemaakt",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "verschoonbare termijjnoverschrijding ?",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "ja  / nee",
+    "Format": "tekst",
+    "Voorbeeld": "nee",
+    "Uitgangspunten": "1. Deze optie is opgenomen om aan te tonen of de termijn is overschreden door uitzonderingen zoals bijvoorbeeld opschorting."
+  },
+  {
+    "Attributen": "URL naar informatieverzoek",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Het betreft hier welke data wordt geleverd gekoppeld aan het besluit",
+    "Format": "URL",
+    "Voorbeeld": "http://www.example.com/index.html",
+    "Uitgangspunten": "1. Het betreft hier welke data wordt geleverd gekoppeld aan het besluit."
+  },
+  {
+    "Attributen": "URL naar inventarisatieslijst",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Betreft overzicht van bestanden",
+    "Format": "URL",
+    "Voorbeeld": "http://www.example.com/index.html",
+    "Uitgangspunten": "1. Gekozen om deze URL mee te nemen is omdat deze inventarisatielijst soms als apart document geleverd wordt."
+  },
+  {
+    "Attributen": "URL naar besluit of reactiebrief",
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Betreft verwijzing naar het besluit of reactiebrief",
+    "Format": "URL",
+    "Voorbeeld": "http://www.example.com/index.html",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "URL naar bijlagen",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "verwijzing naar 0 of meer URLs per bijlage",
+    "Format": "URL",
+    "Voorbeeld": "http://www.example.com/index.html",
+    "Uitgangspunten": "1. een URL per bijlage gebruiken. Verwijzen naarn een ZIP file is toegestaan."
+  },
+  {
+    "Attributen": "Titel voor URL naar informatieverzoek",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "vriendelijke naam / link  naar de bijlage met uitleg waarheen het verwijst",
+    "Format": "Tekst",
+    "Voorbeeld": "https://www.noord-holland.nl/Loket/Wob_verzoek/Wob_verzoeken_2018/Wob_verzoek_en_beantwoording_wob_verzoek_Inkorting_buslijn_28_op_Texel",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "geografisch gebied",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Ruimtelijke afbakening voor het object / perceel / gebied waar het informatieverzoek betrekking op heeft. Gekozen kan worden voor een BAGof BGT ID voor objecten of percelen,  X/Y, LAT/LON voor een gebied of een tekstuele beschrijving als alternatief. De laatste heeft niet de voorkeur. Voor de waarde van de data en het hergebruik is een geo component vaak gewenst. Over het algemeen geldt dat gebruik van het rijksdriehoeksstelsel de voorkeur heeft boven LAT/LON",
+    "Format": "tekst",
+    "Voorbeeld": "Het stationsgebied",
+    "Uitgangspunten": "1. Locatiegegevens kunnen worden opgenomen als het van waarde is. Wanneer hier sprake van is, is nu ter beoordeling van de behandelaar in het proces. Het betreft hier de locatie van het object / perceel / gebied waar het informatieverzoek over gaat en nooit over de locatiegegevens van de indiener.\n2. PPC4 is niet gekozen als geografisch kader omdat het soms 1 object, perceel of specifiek maar ook groter gebied betreft."
+  },
+  {
+    "Attributen": "BAG ID",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "zie ook : https://bagviewer.kadaster.nl/lvbag/bag-viewer/index.html#?geometry.x=160000&geometry.y=455000&zoomlevel=0",
+    "Format": "cijfers",
+    "Voorbeeld": "0518100000231232",
+    "Uitgangspunten": "1. betreft pand-ID"
+  },
+  {
+    "Attributen": "BGT ID",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "",
+    "Format": "",
+    "Voorbeeld": "nog uitzoeken, volgt via SB",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "X",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Rijksdriehoeksco�rdinaat in meters",
+    "Format": "cijfers",
+    "Voorbeeld": 81611,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Y",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Rijksdriehoeksco�rdinaat in meters",
+    "Format": "cijfers",
+    "Voorbeeld": 454909,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Longitude",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Lengtegraad (DD.dddddd notatie), bv. 4.3166395; minimaal 4 decimalen",
+    "Format": "graden in DD.dddddd notatie; minimaal 4 decimalen",
+    "Voorbeeld": 4.3166395,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Latitude",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Breedtegraad (DD.dddddd notatie), bv. 52.0775912; minimaal 4 decimalen",
+    "Format": "graden in DD.dddddd notatie; minimaal 4 decimalen",
+    "Voorbeeld": 52.0775912,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Postcodegebied",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Postcodegebieden volgens CBS, postcode-6 bestand of postcode-4 bestand",
+    "Format": "vier cijfers twee letters of vier cijfers",
+    "Voorbeeld": "3011 AD of 3011",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "",
+    "Verplicht (Y/N)": "",
+    "Opmerkingen": "",
+    "Format": "",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Verkeersruimte stemlokaal",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.1,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Obstakelvrije doorgangen",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.1.a",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Vrije draaicirkel / manoeuvreerruimte",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.1.b",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Idem voor stemtafel en stemhokje",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.1.c",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Opstelruimte voor/naast stembus",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.1.d",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Stoelen in stemruimte",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.2,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Stoelen in stemruimte aanwezig",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.2.a, Ja: Verder naar vraag 3.2.b / Nee: Verder naar vraag 3.3.a",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "1 op 5 Stoelen uitgevoerd met armleuningen",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.2.b",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Stemhokje",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.3,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Hoogte van het laagste schrijfblad",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.3.a",
+    "Format": "Hoogte cm",
+    "Voorbeeld": 60,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Schrijfblad onderrijdbaar",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.3.b",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Stembus",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.4,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Hoogte inworpgleuf stembiljet",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.4.a",
+    "Format": "Hoogte in cm",
+    "Voorbeeld": 70,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Afstand inwerpgleuf t.o.v. de opstelruimte",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.4.b",
+    "Format": "Afstand in cm",
+    "Voorbeeld": 160,
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Leesloep",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.5,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Leesloep (zichtbaar) aanwezig",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "3.5.a",
+    "Format": "Y of N",
+    "Voorbeeld": "Y",
+    "Uitgangspunten": ""
+  },
+  {
+    "Attributen": "Kandidatenlijst",
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": 3.6,
+    "Format": "Niet invullen",
+    "Voorbeeld": "",
+    "Uitgangspunten": ""
+  }
+]

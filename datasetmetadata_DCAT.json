@@ -1,0 +1,198 @@
+[
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "CBS gemeentenaam zie, https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83859NED/table?dl=5CA6",
+    "Format": "tekst",
+    "Voorbeeld": "'s-Gravenhage",
+    "Metadata": "Gemeente"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "CBS gemeentecode bestaande uit 6 karakters, zie https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83859NED/table?dl=5CA6",
+    "Format": "GM<4 cijfers>",
+    "Voorbeeld": "GM0518",
+    "Metadata": "CBS gemeentecode"
+  },
+  {
+    "Verplicht (Y/N)": "",
+    "Opmerkingen": "",
+    "Format": "",
+    "Voorbeeld": "",
+    "Metadata": "Bestuursorgaan"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Vul hier de GRS notatie in van het publicerend bestuursorgaan",
+    "Format": "nl.(notatie behorend bij type organisatie)(getal behorend bij specifieke organisatie)",
+    "Voorbeeld": "nl.gm0599",
+    "Metadata": "ID bestuursorgaan"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "titel WOO overnemen ( Open Wob) // nu: Wettelijke informatieverzoeken",
+    "Format": "Wobverzoek",
+    "Voorbeeld": "",
+    "Metadata": "Titel"
+  },
+  {
+    "Verplicht (Y/N)": "",
+    "Opmerkingen": "",
+    "Format": "",
+    "Voorbeeld": "",
+    "Metadata": ""
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "",
+    "Format": "Dataset met informatieverzoeken.",
+    "Voorbeeld": "Dataset met informatieverzoeken.",
+    "Metadata": "Omschrijving"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "tekst",
+    "Voorbeeld": "Elke gemeente is eigenaar van de Wob-data in haar eigen gemeente",
+    "Metadata": "Eigenaar"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "tekst",
+    "Voorbeeld": "afdeling/rol",
+    "Metadata": "Contactgegevens"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "<afdeling/functie>: De afdeling of specifieke functie binnen de gemeente die zich bezig houdt met informatieverzoeken.  ivm verduurzaming bij voorkeur dus niet de naam/contactgegevens van een persoon",
+    "Format": "<afdeling/functie>, <e-mailadres en/of telefoonnummer en/of postadres>",
+    "Voorbeeld": "wob@rotterdam.nl",
+    "Metadata": "Contactgegevens"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "tekst",
+    "Voorbeeld": "Om de informatieverzoeken toegankelijk te maken voor geinterresseerden",
+    "Metadata": "Doel"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "tekst",
+    "Voorbeeld": "Hergebruik; Het bestand is onder andere bruikbaar voor het maken van visualisaties en analyses",
+    "Metadata": "Mogelijkheden"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "tekst",
+    "Voorbeeld": "Geen, de gegevens zijn openbaar en zonder restricties beschikbaar voor hergebruik",
+    "Metadata": "Beperkingen"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "nog te bepalen",
+    "Format": "nog te bepalen",
+    "Voorbeeld": "nog te bepalen",
+    "Metadata": "Tags"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "",
+    "Voorbeeld": "nog te bepalen",
+    "Metadata": "Thema"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "",
+    "Voorbeeld": "Puntobject",
+    "Metadata": "Geografie"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Ruimtelijke afbakening voor het object / perceel / gebied waar het informatieverzoek betrekking op heeft. Gekozen kan worden voor een BAGof BGT ID voor objecten of percelen,  X/Y, LAT/LON voor een gebied of een tekstuele beschrijving als alternatief. De laatste heeft niet de voorkeur. Voor de waarde van de data en het hergebruik is een geo component vaak gewenst. Over het algemeen geldt dat gebruik van het rijksdriehoeksstelsel de voorkeur heeft boven LAT/LON",
+    "Format": "tekst",
+    "Voorbeeld": "Het stationsgebied",
+    "Metadata": "Geografisch gebied"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Datum en tijdstip van de publicatie de dataset, weergegeven als ISO 8601 https://nl.wikipedia.org/wiki/ISO_8601",
+    "Format": "YYYY-MM-DDTHH:MM:SS+-HH:MM",
+    "Voorbeeld": "2019-01-16T13:05:23+01:00",
+    "Metadata": "Datum publicatie"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "URL",
+    "Format": "",
+    "Voorbeeld": "",
+    "Metadata": "Beschikbaarheid"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "",
+    "Voorbeeld": "",
+    "Metadata": "Relatie / gebruik andere standaarden"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "https://www.noraonline.nl/images/noraonline/6/6c/GAB_basis_datatypen_1.0.pdf",
+    "Format": "YYYY-MM-DDTHH:MM:SS:ddd+0200  tot YYYY-MM-DDTHH:MM:SS:ddd+0200",
+    "Voorbeeld": "",
+    "Metadata": "Dekking in de tijd"
+  },
+  {
+    "Verplicht (Y/N)": "",
+    "Opmerkingen": "",
+    "Format": "",
+    "Voorbeeld": "",
+    "Metadata": ""
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "<datum verzoek>: in format zoals '21 maart 2018'",
+    "Format": "Incidenteel tot en met <datum verzoek>",
+    "Voorbeeld": "nog te bepalen",
+    "Metadata": "Wijzigingsfrequentie / updatefrequentie"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Datum en tijdstip van de laatste wijziging van de dataset, weergegeven als ISO 8601 https://nl.wikipedia.org/wiki/ISO_8601",
+    "Format": "YYYY-MM-DDTHH:MM:SS+-HH:MM",
+    "Voorbeeld": "2019-01-16T13:05:23+01:00",
+    "Metadata": "Wijzigingsdatum"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "Invoer is \"vast",
+    "Format": "",
+    "Voorbeeld": "CC0, https://creativecommons.org/publicdomain/zero/1.0/deed.nl",
+    "Metadata": "Licentie"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "Vermeld de standaard die gebruikt wordt voor de attributen (als dat het geval is).\nInvoer is \"vast",
+    "Format": "",
+    "Voorbeeld": "Stembureaus ODS",
+    "Metadata": "Toegepaste standaarden"
+  },
+  {
+    "Verplicht (Y/N)": "N",
+    "Opmerkingen": "<status>: keuze uit\n- Volledig\n- Verouderd\n- In ontwikkeling\n- Teruggetrokken",
+    "Format": "<status>",
+    "Voorbeeld": "In ontwikkeling",
+    "Metadata": "Status"
+  },
+  {
+    "Verplicht (Y/N)": "Y",
+    "Opmerkingen": "CSV (minimaal), GEOJSON (eventueel KML, Shape), als service REST",
+    "Format": "",
+    "Voorbeeld": "CSV",
+    "Metadata": "Beschikbare formaten"
+  }
+]
