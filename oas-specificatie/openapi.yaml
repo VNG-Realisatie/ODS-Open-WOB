@@ -1,0 +1,781 @@
+openapi: 3.0.0
+info:
+  title: Wob-publicatie API
+  description: API-specificatie voor het publiceren van (gemeentelijke) Wob-verzoeken (naar de landelijke PLOOI-voorziening).
+  contact:
+    url: https://vng-realisatie.github.io/gemma-verwerkingenlogging/api-read/index
+    email: standaarden.ondersteuning@vng.nl
+  license:
+    name: EUPL 1.2
+    url: https://opensource.org/licenses/EUPL-1.2
+  version: 0.1.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/KorverInformatica/wob-api/0.1.0
+  - url: https://localhost:8000/api/v1
+  - url: https://logging-inzage-api.vng.cloud/api/v1
+security: 
+  - JWT-Claims: []
+paths:
+  /wob-verzoeken:
+    get:
+      tags:
+        - wob-verzoeken
+      summary: WOB-verzoeken opvragen.
+      operationId: wob-verzoeken_list
+      description: Door de juiste parameters mee te geven kun je zoeken naar de voor jou relevante Wob-verzoeken.
+      parameters:
+        - name: gepubliceerdVanaf
+          in: query
+          description: Geef alleen die Wob-verzoeken terug die gepubliceerd zijn op of na deze datum.
+          schema:
+            type: string
+            format: date
+            example: "2019-08-06"
+        - name: gewijzigdVanaf
+          in: query
+          description: Geef alleen die Wob-verzoeken terug die gewijzigd zijn op of na deze datum.
+          schema:
+            type: string
+            format: date
+            example: "2020-10-24"
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type: string
+                    format: uri
+                    nullable: true
+                  previous:
+                    type: string
+                    format: uri
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WobVerzoek'
+        '400':
+          description: Bad request
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidatieFout'
+        '401':
+          description: Unauthorized
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '403':
+          description: Forbidden
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '406':
+          description: Not acceptable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '409':
+          description: Conflict
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '410':
+          description: Gone
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '415':
+          description: Unsupported media type
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '429':
+          description: Too many requests
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '500':
+          description: Internal server error
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '501':
+          description: Not Implemented
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '503':
+          description: Service Unavailable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+      security: 
+      - JWT-Claims:
+        - read:restricted
+        - read:normal
+        - read:confidential
+  /wob-verzoeken/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Identificator die het wob-verzoek uniek identificeert (UUID4).
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "5f089abb-7ed1-4714-92d4-1850453eda5d"
+    get:
+      tags:
+        - wob-verzoeken
+      operationId: wob-verzoek_read
+      summary: Een specifiek Wob-verzoek opvragen.
+      description: Een specifiek Wob-verzoek opvragen.
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WobVerzoek'
+        '400':
+          description: Bad request
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidatieFout'
+        '401':
+          description: Unauthorized
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '403':
+          description: Forbidden
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '404':
+          description: Not found
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '406':
+          description: Not acceptable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '409':
+          description: Conflict
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '410':
+          description: Gone
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '412':
+          description: Precondition failed
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van een
+                specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '415':
+          description: Unsupported media type
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '429':
+          description: Too many requests
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '500':
+          description: Internal server error
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '501':
+          description: Not Implemented
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+        '503':
+          description: Service Unavailable
+          headers:
+            API-version:
+              schema:
+                type: string
+              description: 'Geeft een specifieke API-versie aan in de context van
+                een specifieke aanroep. Voorbeeld: 1.2.1.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Fout'
+      security: 
+      - JWT-Claims:
+        - read:restricted
+        - read:normal
+        - read:confidential
+components:
+  securitySchemes:
+    JWT-Claims:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Fout:
+      required:
+      - code
+      - title
+      - status
+      - detail
+      - instance
+      type: object
+      properties:
+        type:
+          title: Type
+          description: URI referentie naar het type fout, bedoeld voor developers
+          type: string
+        code:
+          title: Code
+          description: Systeemcode die het type fout aangeeft
+          type: string
+          minLength: 1
+        title:
+          title: Title
+          description: Generieke titel voor het type fout
+          type: string
+          minLength: 1
+        status:
+          title: Status
+          description: De HTTP status code
+          type: integer
+        detail:
+          title: Detail
+          description: Extra informatie bij de fout, indien beschikbaar
+          type: string
+          minLength: 1
+        instance:
+          title: Instance
+          description: URI met referentie naar dit specifiek voorkomen van de fout.
+            Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.
+          type: string
+          minLength: 1
+    FieldValidationError:
+      required:
+      - name
+      - code
+      - reason
+      type: object
+      properties:
+        name:
+          title: Name
+          description: Naam van het veld met ongeldige gegevens
+          type: string
+          minLength: 1
+        code:
+          title: Code
+          description: Systeemcode die het type fout aangeeft
+          type: string
+          minLength: 1
+        reason:
+          title: Reason
+          description: Uitleg wat er precies fout is met de gegevens
+          type: string
+          minLength: 1
+    ValidatieFout:
+      required:
+      - code
+      - title
+      - status
+      - detail
+      - instance
+      - invalidParams
+      type: object
+      properties:
+        type:
+          title: Type
+          description: URI referentie naar het type fout, bedoeld voor developers
+          type: string
+        code:
+          title: Code
+          description: Systeemcode die het type fout aangeeft
+          type: string
+          minLength: 1
+        title:
+          title: Title
+          description: Generieke titel voor het type fout
+          type: string
+          minLength: 1
+        status:
+          title: Status
+          description: De HTTP status code
+          type: integer
+        detail:
+          title: Detail
+          description: Extra informatie bij de fout, indien beschikbaar
+          type: string
+          minLength: 1
+        instance:
+          title: Instance
+          description: URI met referentie naar dit specifiek voorkomen van de fout.
+            Deze kan gebruikt worden in combinatie met server logs, bijvoorbeeld.
+          type: string
+          minLength: 1
+        invalidParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldValidationError'
+    WobVerzoek:
+      title: Wob verzoek
+      type: object
+      required:
+        - url
+        - id
+        - wobVerzoekId
+        - wobVerzoekInformatie
+        - behandelendBestuursorgaan
+        - ontvangerInformatieverzoek
+        - themas
+        - titel
+        - ontvangstdatum
+        - besluitdatum
+        - besluit
+        - urlInformatieverzoek
+        - urlBesluit
+      properties:
+        url:
+          title: URL
+          description: URL-referentie naar deze resource. Deze link wordt automatisch aangemaakt.
+          type: string
+          format: uri
+          maxLength: 2042
+          minLength: 1
+          readOnly: true
+          example: "https://wob-verzoeken-api.vng.cloud/api/v1/wob-verzoeken/7a22eb38-bca6-463f-9955-54ab040287cb"
+        id:
+          description: Het ID van deze resource. Deze ID wordt automatisch aangemaakt.
+          type: string
+          format: uuid
+          readOnly: true
+          example: "7a22eb38-bca6-463f-9955-54ab040287cb"
+        wobVerzoekId:
+          # $id: '#root/WOBverzoeken/items/ID'
+          description: Het ID van het Wob-verzoek.
+          type: string
+          example: # aanpassing t.o.v. json
+            - nl.pv74 2019-0071
+            - nl.gm0583 2020-0012
+        wobVerzoekInformatie:
+          # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie'
+          description: Versie informatie van het Wob-verzoek
+          type: object
+          required:
+            - status
+            - tijdstipLaatsteWijziging
+          properties:
+            status:
+              # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie/Status'
+              description: De status van het Wob-verzoek.
+              type: string
+              enum:
+                - nieuw
+                - gewijzigd
+                - verwijderd
+              example: nieuw
+            tijdstipLaatsteWijziging:
+              # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie/Tijdstip_laatste_wijziging'
+              description: De status van het Wob-verzoek (UTC datetime)
+              type: string
+              example: '2020-07-01T22:01:01'
+        behandelendBestuursorgaan:
+          # $id: '#root/WOBverzoeken/items/Behandelend_bestuursorgaan'
+          description: Identificatie behandelend bestuursorgaan
+          type: string
+          example: nl.gm0599
+        ontvangerInformatieverzoek:
+          # $id: '#root/WOBverzoeken/items/Ontvanger_informatieverzoek'
+          description: Eerste ontvanger informatieverzoek
+          type: string
+          example: nl.gm0599
+        volgnummer:
+          # $id: '#root/WOBverzoeken/items/Volgnummer'
+          description: Intern volgnummer
+          type: string
+          example: WOB1234
+        titel:
+          # $id: '#root/WOBverzoeken/items/Titel'
+          description: Titel van het Wob-verzoek
+          type: string
+          example: Verlenen van een kapvergunning Van de Spiegelstraat 12 Den Haag februari 2009
+        beschrijving:
+          # $id: '#root/WOBverzoeken/items/Beschrijving'
+          description: Korte beschrijvng van het Wob-verzoek
+          type: string
+          example: Korte samenvatting van het informatieverzoek en eventuele onderliggende vragen of onderwerpen
+        verzoeker:
+          # $id: '#root/WOBverzoeken/items/Verzoeker'
+          description: Indiener van het Wob-verzoek
+          type: string
+          enum:
+            - rechtspersoon
+            - rechtsvertegenwoordiger
+            - natuurlijk_persoon
+          example: rechtspersoon
+        ontvangstdatum:
+          # $id: '#root/WOBverzoeken/items/Ontvangstdatum'
+          description: Datum ontvangst Wob-verzoek (yyyy-mm-dd)
+          type: string
+          example: '2020-01-01'
+        besluitdatum:
+          # $id: '#root/WOBverzoeken/items/Besluitdatum'
+          description: Datum besluit Wob-verzoek (yyyy-mm-dd)
+          type: string
+          example: '2020-01-01'
+        behandelstatus:
+          # $id: '#root/WOBverzoeken/items/Behandelstatus'
+          description: De laatste afgehandelde status
+          type: string
+          default: Afgehandeld
+        besluit:
+          # $id: '#root/WOBverzoeken/items/Besluit'
+          description: Besluit
+          type: string
+          enum:
+            - openbaar_gemaakt
+            - niet_openbaar_gemaakt
+            - deels_openbaar_gemaakt
+            - reeds_openbaar
+          example: openbaar_gemaakt
+        termijnoverschrijding:
+          # $id: '#root/WOBverzoeken/items/Termijnoverschrijding'
+          description: Verschoonbare termijnoverschrijding.
+          type: string
+          enum:
+            - ja
+            - nee
+          example: Nee
+        urlInformatieverzoek:
+          # $id: '#root/WOBverzoeken/items/URL_informatieverzoek'
+          description: URL naar het informatieverzoek.
+          type: string
+          example: 'http://www.example.com/index.html'
+        urlInventarisatielijst:
+          # $id: '#root/WOBverzoeken/items/URL_inventarisatielijst'
+          description: URL naar de inventarisatielijst
+          type: string
+          example: 'http://www.example.com/index.html'
+        urlBesluit:
+          # $id: '#root/WOBverzoeken/items/URL_besluit'
+          description: URL naar het besluit of reactiebrief.
+          type: string
+          example: 'http://www.example.com/index.html'
+        bijlagen:
+          # $id: '#root/WOBverzoeken/items/Bijlagen'
+          description: URL's naar bijlagen
+          type: array
+          items:
+            type: object
+            required:
+              - typeBijlage
+              - statusBijlage
+              - tijdstipLaatsteWijzigingBijlage
+              - titel_Bijlage
+              - urlBijlage
+            properties:
+              typeBijlage:
+                # $id: '#root/WOBverzoeken/items/Bijlagen/Type_bijlage'
+                description: Het type van de bijlage
+                type: string
+                enum:
+                  - procedureel
+                  - inhoudelijk
+                example: inhoudelijk
+              statusBijlage:
+                # $id: '#root/WOBverzoeken/items/Bijlagen/Status_bijlage'
+                description: De status van het Wob-verzoek.
+                type: string
+                enum:
+                  - nieuw
+                  - gewijzigd
+                  - verwijderd
+                example: nieuw
+              tijdstipLaatsteWijzigingBijlage:
+                # $id: '#root/WOBverzoeken/items/Bijlagen/Tijdstip_laatste_wijziging_bijlage'
+                description: De tijstip van de laatste wijziging van de Bijlage (UTC datetime)
+                type: string
+                example: '2020-07-01T22:01:01'
+              titelBijlage:
+                # $id: '#root/WOBverzoeken/items/Bijlagen/Titel_URL_bijlage'
+                description: vriendelijke naam / link  naar de bijlage met uitleg waarheen het verwijst
+                type: string
+                example: Link naaar Bijlage 1
+              urlBijlage:
+                description: URL naar de bijlage
+                # $id: '#root/WOBverzoeken/items/Bijlagen/Bijlage'
+                type: string
+                example: 'http://www.example.com/index.html'
+        geografischGebied:
+          # $id: '#root/WOBverzoeken/items/Geografisch_gebied'
+          description: Ruimtelijke afbakening voor het object / perceel / gebied waar het informatieverzoek betrekking op heeft.
+          type: string
+          example: Het stationsgebied
+        bagId:
+          # $id: '#root/WOBverzoeken/items/BAG_ID'
+          description: Object ID uit Basisregistratie Adressen en Gebouwen
+          type: string
+          example: 0518100000231232
+        bgtId:
+          # $id: '#root/WOBverzoeken/items/BGT_ID'
+          description: Object ID uit Basisregistratie Grootschalige Topografie
+          type: string
+          example: NL.IMGeo G1023.b2ad189a-8c46-49f2-a192-557ba07c49a2
+        coordinaten:
+          # $id: '#root/WOBverzoeken/items/COORDS'
+          description: 'Rijksdriehoekscoördinaten '
+          type: object
+          required:
+            - x
+            - y
+          properties:
+            x:
+              # $id: '#root/WOBverzoeken/items/COORDS/X'
+              description: X coördinaat
+              type: integer
+              example: 200000
+            y:
+              # $id: '#root/WOBverzoeken/items/COORDS/Y'
+              description: Y coördinaat
+              type: integer
+              example: 454000
+        geografischePositie:
+          # $id: '#root/WOBverzoeken/items/Geografische_positie'
+          # !!! Check of dit een internationale standaard is. Zoniet dan moeten de namen van de properstie in het Nederlands.
+          description: Geografische positieaanduiding
+          type: object
+          required:
+            - longitude
+            - lattitude
+          properties:
+            longitude:
+              # $id: '#root/WOBverzoeken/items/Geografische_positie/Longitude'
+              description: Lengtegraad (DD.dddddd notatie)
+              type: number
+              example: 4.3166395
+            lattitude:
+              # $id: '#root/WOBverzoeken/items/Geografische_positie/Lattitude'
+              description: Breedtegraad (DD.dddddd notatie)
+              type: number
+              example: 52.0775912
+        postcodegebied:
+          # $id: '#root/WOBverzoeken/items/Postcodegebied'
+          description: 'Postcodegebieden volgens CBS, postcode-6 (3011AD) of postcode-4 (3011)'
+          type: string
+          example: 3011AD
+        themas:
+          # $id: '#root/WOBverzoeken/items/Themas'
+          description: Een of meerdere thema's uit de TOP-lijst
+          type: array
+          items:
+            uniqueItems: true
+            type: object
+            required:
+              - hoofdthema
+            properties:
+              hoofdthema:
+                # $id: '#root/WOBverzoeken/items/Themas/Hoofdthema'
+                description: Thema uit TOP-lijst
+                type: string
+                example: Cultuur en recreatie
+              subthema:
+                # $id: '#root/WOBverzoeken/items/Themas/Subthema'
+                description: subthema
+                type: string
+                example: Recreatie
+              aanvullendThema:
+                # $id: '#root/WOBverzoeken/items/Themas/Aanvullend_thema'
+                description: subthema
+                type: string
+                example: Sport
