@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Wob-publicatie API
+  title: Wob-verzoeken Publicatie API
   description: API-specificatie voor het publiceren van (gemeentelijke) Wob-verzoeken (naar de landelijke PLOOI-voorziening).
   contact:
     url: https://vng-realisatie.github.io/gemma-verwerkingenlogging/api-read/index
