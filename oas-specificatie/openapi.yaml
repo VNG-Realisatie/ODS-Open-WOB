@@ -15,8 +15,8 @@ servers:
     url: https://virtserver.swaggerhub.com/KorverInformatica/wob-api/0.1.0
   - url: https://localhost:8000/api/v1
   - url: https://logging-inzage-api.vng.cloud/api/v1
-security: 
-  - JWT-Claims: []
+# security: 
+#   - JWT-Claims: []
 paths:
   /wob-verzoeken:
     get:
@@ -203,11 +203,11 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Fout'
-      security: 
-      - JWT-Claims:
-        - read:restricted
-        - read:normal
-        - read:confidential
+      # security: 
+      # - JWT-Claims:
+      #   - read:restricted
+      #   - read:normal
+      #   - read:confidential
   /wob-verzoeken/{id}:
     parameters:
     - name: id
@@ -393,17 +393,17 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Fout'
-      security: 
-      - JWT-Claims:
-        - read:restricted
-        - read:normal
-        - read:confidential
+      # security: 
+      # - JWT-Claims:
+      #   - read:restricted
+      #   - read:normal
+      #   - read:confidential
 components:
-  securitySchemes:
-    JWT-Claims:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+  # securitySchemes:
+  #   JWT-Claims:
+  #     type: http
+  #     scheme: bearer
+  #     bearerFormat: JWT
   schemas:
     Fout:
       required:
