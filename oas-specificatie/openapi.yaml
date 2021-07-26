@@ -22,7 +22,7 @@ paths:
     get:
       tags:
         - wob-verzoeken
-      summary: WOB-verzoeken opvragen.
+      summary: Wob-verzoeken opvragen.
       operationId: wob-verzoeken_list
       description: Door de juiste parameters mee te geven kun je zoeken naar de voor jou relevante Wob-verzoeken.
       parameters:
