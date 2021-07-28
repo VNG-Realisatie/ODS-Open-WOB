@@ -21,7 +21,7 @@ paths:
   /wob-verzoeken:
     get:
       tags:
-        - wob-verzoeken
+        - Wob-verzoeken
       summary: Wob-verzoeken opvragen.
       operationId: wob-verzoeken_list
       description: Door de juiste parameters mee te geven kun je zoeken naar de voor jou relevante Wob-verzoeken.
@@ -221,7 +221,7 @@ paths:
         example: "5f089abb-7ed1-4714-92d4-1850453eda5d"
     get:
       tags:
-        - wob-verzoeken
+        - Wob-verzoeken
       operationId: wob-verzoek_read
       summary: Een specifiek Wob-verzoek opvragen.
       description: Een specifiek Wob-verzoek opvragen.
