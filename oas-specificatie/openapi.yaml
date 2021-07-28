@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: Wob-verzoeken Publicatie API
-  description: API-specificatie voor het publiceren van (gemeentelijke) Wob-verzoeken (naar de landelijke PLOOI-voorziening).
+  description: API voor het publiceren van Wob-verzoeken. In eerste instantie is deze API bedoeld voor het onsluiten van gepubliceerde Wob-verzoeken van gemeenten en provincies naar de landelijke PLOOI-voorziening.
   contact:
-    url: https://vng-realisatie.github.io/gemma-verwerkingenlogging/api-read/index
+    url: https://github.com/VNG-Realisatie/ODS-Open-WOB
     email: standaarden.ondersteuning@vng.nl
   license:
     name: EUPL 1.2
@@ -14,7 +14,7 @@ servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/KorverInformatica/wob-api/0.1.0
   - url: https://localhost:8000/api/v1
-  - url: https://logging-inzage-api.vng.cloud/api/v1
+  - url: https://www.mijngemeente.nl/wob-publicatie/api/v1
 # security: 
 #   - JWT-Claims: []
 paths:
@@ -27,6 +27,7 @@ paths:
       description: Door de juiste parameters mee te geven kun je zoeken naar de voor jou relevante Wob-verzoeken.
       parameters:
         - name: gepubliceerdVanaf
+        ## Een wob-verzoek kent drie statussen: nieuw, gewijzigd en verwijderd. Moet analoog hieraan ook de parameters dezelfde naamgeving krijgen. Dus 'nieuwVanaf', 'gewijzigdVanaf' en 'verwijderdVanaf'...
           in: query
           description: Geef alleen die Wob-verzoeken terug die gepubliceerd zijn op of na deze datum.
           schema:
@@ -208,9 +209,9 @@ paths:
       #   - read:restricted
       #   - read:normal
       #   - read:confidential
-  /wob-verzoeken/{id}:
+  /wob-verzoeken/{uuid}:
     parameters:
-    - name: id
+    - name: uuid
       in: path
       description: Identificator die het wob-verzoek uniek identificeert (UUID4).
       required: true
@@ -510,10 +511,11 @@ components:
             $ref: '#/components/schemas/FieldValidationError'
     WobVerzoek:
       title: Wob verzoek
+      description: Verzoek tot openbaarmaking van bepaalde overheidsinformatie in het kader van de Wet openbaarheid van bestuur.
       type: object
       required:
         - url
-        - id
+        - uuid
         - wobVerzoekId
         - wobVerzoekInformatie
         - behandelendBestuursorgaan
@@ -534,30 +536,29 @@ components:
           maxLength: 2042
           minLength: 1
           readOnly: true
-          example: "https://wob-verzoeken-api.vng.cloud/api/v1/wob-verzoeken/7a22eb38-bca6-463f-9955-54ab040287cb"
-        id:
-          description: Het ID van deze resource. Deze ID wordt automatisch aangemaakt.
+          example: "https://www.mijngemeente.nl/wob-publicatie/api/v1/wob-verzoeken/7a22eb38-bca6-463f-9955-54ab040287cb"
+        uuid:
+          description: Unieke resource identifier (UUID4). Deze ID wordt automatisch aangemaakt.
           type: string
           format: uuid
           readOnly: true
           example: "7a22eb38-bca6-463f-9955-54ab040287cb"
-        wobVerzoekId:
-          # $id: '#root/WOBverzoeken/items/ID'
-          description: Het ID van het Wob-verzoek.
+        identificatie:
+          description: Unieke identificatie van het Wob-verzoek.
           type: string
-          example: # aanpassing t.o.v. json
-            - nl.pv74 2019-0071
-            - nl.gm0583 2020-0012
-        wobVerzoekInformatie:
-          # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie'
-          description: Versie informatie van het Wob-verzoek
+          example: ## aanpassing t.o.v. json
+            - "nl.pv74 2019-0071"
+            - "nl.gm0583 2020-0012"
+        versieInformatie:
+          ## Voorheen wobVerzoekInformatie
+          ## Wat is de reden van deze groepering? Heeft tijdstipLaatsteWijziging alleen betrekking op de wijziging van de status (en niet op andere properties van het Wob-verzoek)?
+          description: Informatie over de versie van het Wob-verzoek
           type: object
           required:
             - status
             - tijdstipLaatsteWijziging
           properties:
-            status:
-              # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie/Status'
+            status: ## Wijzigt de status van het Wobverzoek als een van de bijlagen verandert. Die heeft namelijk ook een status.
               description: De status van het Wob-verzoek.
               type: string
               enum:
@@ -565,38 +566,32 @@ components:
                 - gewijzigd
                 - verwijderd
               example: nieuw
-            tijdstipLaatsteWijziging:
-              # $id: '#root/WOBverzoeken/items/Wobverzoek_informatie/Tijdstip_laatste_wijziging'
-              description: De status van het Wob-verzoek (UTC datetime)
+            tijdstipLaatsteWijziging: ## Wijzigt dit veld van het Wobverzoek als een van de bijlagen verandert. Die heeft namelijk ook een tijdstipLaatsteWijziging.
+              description: Het tijdstip waarop het Wob-verzoek voor het laatst is gewijzigd (UTC datetime).
               type: string
+              format: date-time
               example: '2020-07-01T22:01:01'
         behandelendBestuursorgaan:
-          # $id: '#root/WOBverzoeken/items/Behandelend_bestuursorgaan'
           description: Identificatie behandelend bestuursorgaan
           type: string
           example: nl.gm0599
         ontvangerInformatieverzoek:
-          # $id: '#root/WOBverzoeken/items/Ontvanger_informatieverzoek'
           description: Eerste ontvanger informatieverzoek
           type: string
-          example: nl.gm0599
+          example: "nl.gm0599"
         volgnummer:
-          # $id: '#root/WOBverzoeken/items/Volgnummer'
           description: Intern volgnummer
           type: string
-          example: WOB1234
+          example: "WOB1234"
         titel:
-          # $id: '#root/WOBverzoeken/items/Titel'
           description: Titel van het Wob-verzoek
           type: string
           example: Verlenen van een kapvergunning Van de Spiegelstraat 12 Den Haag februari 2009
         beschrijving:
-          # $id: '#root/WOBverzoeken/items/Beschrijving'
           description: Korte beschrijvng van het Wob-verzoek
           type: string
           example: Korte samenvatting van het informatieverzoek en eventuele onderliggende vragen of onderwerpen
         verzoeker:
-          # $id: '#root/WOBverzoeken/items/Verzoeker'
           description: Indiener van het Wob-verzoek
           type: string
           enum:
@@ -605,22 +600,21 @@ components:
             - natuurlijk_persoon
           example: rechtspersoon
         ontvangstdatum:
-          # $id: '#root/WOBverzoeken/items/Ontvangstdatum'
           description: Datum ontvangst Wob-verzoek (yyyy-mm-dd)
           type: string
+          format: date
           example: '2020-01-01'
         besluitdatum:
-          # $id: '#root/WOBverzoeken/items/Besluitdatum'
           description: Datum besluit Wob-verzoek (yyyy-mm-dd)
           type: string
-          example: '2020-01-01'
+          format: date
+          example: '2020-03-10'
         behandelstatus:
-          # $id: '#root/WOBverzoeken/items/Behandelstatus'
+          ## Dit veld is nog onduidelijk. Er is ook een statusveld bij de versieInformatie. Wat is het verschil en waarom heeft dit veld geen enumeratie?
           description: De laatste afgehandelde status
           type: string
           default: Afgehandeld
         besluit:
-          # $id: '#root/WOBverzoeken/items/Besluit'
           description: Besluit
           type: string
           enum:
@@ -630,34 +624,33 @@ components:
             - reeds_openbaar
           example: openbaar_gemaakt
         termijnoverschrijding:
-          # $id: '#root/WOBverzoeken/items/Termijnoverschrijding'
+          ## Dit veld kan nog beter beschreven worden. Ik begrijp het in ieder geval niet.
           description: Verschoonbare termijnoverschrijding.
           type: string
           enum:
             - ja
             - nee
-          example: Nee
+          example: nee
         urlInformatieverzoek:
-          # $id: '#root/WOBverzoeken/items/URL_informatieverzoek'
           description: URL naar het informatieverzoek.
           type: string
+          format: uri
           example: 'http://www.example.com/index.html'
         urlInventarisatielijst:
-          # $id: '#root/WOBverzoeken/items/URL_inventarisatielijst'
           description: URL naar de inventarisatielijst
           type: string
+          format: uri
           example: 'http://www.example.com/index.html'
         urlBesluit:
-          # $id: '#root/WOBverzoeken/items/URL_besluit'
           description: URL naar het besluit of reactiebrief.
           type: string
+          format: uri
           example: 'http://www.example.com/index.html'
         bijlagen:
-          # $id: '#root/WOBverzoeken/items/Bijlagen'
           description: URL's naar bijlagen
           type: array
           items:
-            type: object
+            type: object ## Moeten we de bijlage niet normaliseren, dus apart object met een naam?
             required:
               - typeBijlage
               - statusBijlage
@@ -666,7 +659,6 @@ components:
               - urlBijlage
             properties:
               typeBijlage:
-                # $id: '#root/WOBverzoeken/items/Bijlagen/Type_bijlage'
                 description: Het type van de bijlage
                 type: string
                 enum:
@@ -674,7 +666,7 @@ components:
                   - inhoudelijk
                 example: inhoudelijk
               statusBijlage:
-                # $id: '#root/WOBverzoeken/items/Bijlagen/Status_bijlage'
+                ## Hier zijn status en tijdstip niet gegroepeerd. In Wob-verzoek wel. Waarom?
                 description: De status van het Wob-verzoek.
                 type: string
                 enum:
@@ -683,56 +675,48 @@ components:
                   - verwijderd
                 example: nieuw
               tijdstipLaatsteWijzigingBijlage:
-                # $id: '#root/WOBverzoeken/items/Bijlagen/Tijdstip_laatste_wijziging_bijlage'
-                description: De tijstip van de laatste wijziging van de Bijlage (UTC datetime)
+                description: De tijdstip van de laatste wijziging van de bijlage (UTC datetime)
                 type: string
+                format: date-time
                 example: '2020-07-01T22:01:01'
               titelBijlage:
-                # $id: '#root/WOBverzoeken/items/Bijlagen/Titel_URL_bijlage'
                 description: vriendelijke naam / link  naar de bijlage met uitleg waarheen het verwijst
                 type: string
                 example: Link naaar Bijlage 1
               urlBijlage:
                 description: URL naar de bijlage
-                # $id: '#root/WOBverzoeken/items/Bijlagen/Bijlage'
                 type: string
                 example: 'http://www.example.com/index.html'
-        geografischGebied:
-          # $id: '#root/WOBverzoeken/items/Geografisch_gebied'
+        geografischGebied: ## Is dit niet een enumeratie of een referentielijst?
           description: Ruimtelijke afbakening voor het object / perceel / gebied waar het informatieverzoek betrekking op heeft.
           type: string
-          example: Het stationsgebied
+          example: "Het stationsgebied"
         bagId:
-          # $id: '#root/WOBverzoeken/items/BAG_ID'
           description: Object ID uit Basisregistratie Adressen en Gebouwen
           type: string
-          example: 0518100000231232
+          example: "0518100000231232"
         bgtId:
-          # $id: '#root/WOBverzoeken/items/BGT_ID'
           description: Object ID uit Basisregistratie Grootschalige Topografie
           type: string
-          example: NL.IMGeo G1023.b2ad189a-8c46-49f2-a192-557ba07c49a2
+          example: "NL.IMGeo G1023.b2ad189a-8c46-49f2-a192-557ba07c49a2"
         coordinaten:
-          # $id: '#root/WOBverzoeken/items/COORDS'
-          description: 'Rijksdriehoekscoördinaten '
+          ## Is hier geen internationaal formaat voor? GeoJSON of zoiets...
+          description: 'Rijksdriehoekscoördinaten'
           type: object
           required:
             - x
             - y
           properties:
             x:
-              # $id: '#root/WOBverzoeken/items/COORDS/X'
               description: X coördinaat
-              type: integer
+              type: integer ## Moet dit niet number zijn (dus mogelijk decimal)?
               example: 200000
             y:
-              # $id: '#root/WOBverzoeken/items/COORDS/Y'
               description: Y coördinaat
-              type: integer
+              type: integer ## Moet dit niet number zijn (dus mogelijk decimal)?
               example: 454000
         geografischePositie:
-          # $id: '#root/WOBverzoeken/items/Geografische_positie'
-          # !!! Check of dit een internationale standaard is. Zoniet dan moeten de namen van de properstie in het Nederlands.
+          ## Check of dit een internationale standaard is. Zoniet dan moeten de namen van de properties in het Nederlands.
           description: Geografische positieaanduiding
           type: object
           required:
@@ -740,22 +724,19 @@ components:
             - lattitude
           properties:
             longitude:
-              # $id: '#root/WOBverzoeken/items/Geografische_positie/Longitude'
               description: Lengtegraad (DD.dddddd notatie)
               type: number
               example: 4.3166395
             lattitude:
-              # $id: '#root/WOBverzoeken/items/Geografische_positie/Lattitude'
               description: Breedtegraad (DD.dddddd notatie)
               type: number
               example: 52.0775912
         postcodegebied:
-          # $id: '#root/WOBverzoeken/items/Postcodegebied'
           description: 'Postcodegebieden volgens CBS, postcode-6 (3011AD) of postcode-4 (3011)'
           type: string
-          example: 3011AD
+          maxLength: 6
+          example: "3011AD"
         themas:
-          # $id: '#root/WOBverzoeken/items/Themas'
           description: Een of meerdere thema's uit de TOP-lijst
           type: array
           items:
@@ -765,17 +746,14 @@ components:
               - hoofdthema
             properties:
               hoofdthema:
-                # $id: '#root/WOBverzoeken/items/Themas/Hoofdthema'
                 description: Thema uit TOP-lijst
                 type: string
                 example: Cultuur en recreatie
               subthema:
-                # $id: '#root/WOBverzoeken/items/Themas/Subthema'
                 description: subthema
                 type: string
                 example: Recreatie
               aanvullendThema:
-                # $id: '#root/WOBverzoeken/items/Themas/Aanvullend_thema'
                 description: subthema
                 type: string
                 example: Sport
