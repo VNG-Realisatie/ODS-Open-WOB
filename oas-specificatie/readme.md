@@ -22,7 +22,7 @@ Bij het omzetten van de JSON datadefinities naar OAS (in yaml formaat) zijn de v
 
 ## HTTP-operaties
 
-Er zijn HTTP-operaties toegevoegd aan de OAS:
+De volgende twee HTTP-operaties zijn toegevoegd aan de OAS:
 - `GET /wob-verzoeken` operatie om Wob-verzoeken te pullen op basis van een peildatum als query parameter (`gepubliceerdVanaf` of `gewijzigdVanaf`).
 - `GET /wob-verzoeken/{uuid}` operatie om te verwijzen naar een individueel Wob-verzoek.
 
